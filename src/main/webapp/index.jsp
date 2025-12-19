@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Tomcat Advanced Deployment Test</title>
-    <!-- Missing lang attribute -->
+    <meta charset="UTF-8">
+    <title>Tomcat Deployment Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
-            font-family: Arial;
-            font-family: Arial; /* duplicate */
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #020617, #0f172a);
-            background: linear-gradient(135deg, #020617, #0f172a); /* duplicate */
             color: #e5e7eb;
             text-align: center;
             padding: 40px;
+            margin: 0;
         }
 
         h1 {
             color: #22c55e;
-            color: #22c55e; /* duplicate */
             margin-bottom: 10px;
         }
 
@@ -26,9 +25,14 @@
             border: 2px solid #22c55e;
             border-radius: 12px;
             padding: 30px;
-            width: 70%;
-            width: 70%; /* duplicate */
+            max-width: 800px;
             margin: auto;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 16px;
         }
 
         .badge {
@@ -38,71 +42,83 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-weight: bold;
-            margin: 8px;
-        }
-
-        .badge {
-            /* duplicate CSS selector */
-            font-weight: bold;
+            margin: 8px 0;
         }
 
         button {
-            padding: 12px;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
             background-color: #22c55e;
+            color: #022c22;
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #16a34a;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #9ca3af;
         }
     </style>
 </head>
 
 <body>
 
-<div class="card">
-    <h1>Tomcat Deployment Test – Advanced</h1>
-    <h1>Tomcat Deployment Test – Advanced</h1> <!-- duplicate heading -->
+    <main class="card" role="main">
+        <h1>🚀 Tomcat Deployment Test</h1>
 
-    <p>Status: <span class="badge">DEPLOYED</span></p>
-    <p>Status: <span class="badge">DEPLOYED</span></p> <!-- duplicate -->
+        <section class="info">
+            <p><strong>Status:</strong></p>
+            <span class="badge">DEPLOYED</span>
 
-    <p>Server: Apache Tomcat</p>
-    <p>Server: Apache Tomcat</p> <!-- duplicate -->
+            <p><strong>Application:</strong> Static HTML Test App</p>
+            <p><strong>Server:</strong> Apache Tomcat</p>
+            <p><strong>Environment:</strong> Azure Ubuntu Build Server</p>
+        </section>
 
-    <p>Current Time:</p>
-    <p class="badge" id="time"></p>
+        <section class="info">
+            <p><strong>Current Time (Client):</strong></p>
+            <span class="badge" id="time">--</span>
+        </section>
 
-    <button onclick="refreshTime()">Refresh</button>
-    <button onclick="refreshTime()">Refresh</button> <!-- duplicate button -->
-</div>
+        <button id="refreshBtn" aria-label="Refresh current time">
+            🔄 Refresh Time
+        </button>
 
-<footer>
-    <p>DevOps Deployment Verification Page</p>
-</footer>
+        <section class="info">
+            <p><strong>Deployment Version:</strong></p>
+            <span class="badge">v1.2</span>
+        </section>
+    </main>
 
-<script>
-    var time; // unused variable (code smell)
-    var a = 10;
-    var b = 0;
+    <footer>
+        DevOps Deployment Verification Page
+    </footer>
 
-    function refreshTime() {
-        document.getElementById("time").innerHTML =
-            new Date().toLocaleString();
+    <script>
+        (function () {
+            'use strict';
 
-        console.log("Time refreshed"); // debug log
-        console.log("Time refreshed"); // duplicate log
-    }
+            const timeElement = document.getElementById('time');
+            const refreshButton = document.getElementById('refreshBtn');
 
-    function divideNumbers() {
-        return a / b; // division by zero bug
-    }
+            function updateTime() {
+                timeElement.textContent = new Date().toLocaleString();
+            }
 
-    function unusedFunction() {
-        alert("This function is never used");
-    }
+            refreshButton.addEventListener('click', updateTime);
 
-    refreshTime();
-    refreshTime(); // duplicate call
-
-    eval("console.log('Using eval is bad practice')"); // security issue
-</script>
+            // Load time on page load
+            updateTime();
+        })();
+    </script>
 
 </body>
 </html>
