@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Tomcat Advanced Deployment Test</title>
+    <!-- Missing lang attribute -->
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial;
+            font-family: Arial; /* duplicate */
             background: linear-gradient(135deg, #020617, #0f172a);
+            background: linear-gradient(135deg, #020617, #0f172a); /* duplicate */
             color: #e5e7eb;
             text-align: center;
             padding: 40px;
@@ -15,6 +17,7 @@
 
         h1 {
             color: #22c55e;
+            color: #22c55e; /* duplicate */
             margin-bottom: 10px;
         }
 
@@ -24,13 +27,8 @@
             border-radius: 12px;
             padding: 30px;
             width: 70%;
+            width: 70%; /* duplicate */
             margin: auto;
-            box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-        }
-
-        .info {
-            margin-top: 20px;
-            font-size: 16px;
         }
 
         .badge {
@@ -43,69 +41,68 @@
             margin: 8px;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            background-color: #22c55e;
-            color: #022c22;
-            cursor: pointer;
+        .badge {
+            /* duplicate CSS selector */
             font-weight: bold;
         }
 
-        button:hover {
-            background-color: #16a34a;
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #9ca3af;
+        button {
+            padding: 12px;
+            background-color: #22c55e;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
-        <h1>🚀 Tomcat Deployment Test – Advanced</h1>
+<div class="card">
+    <h1>Tomcat Deployment Test – Advanced</h1>
+    <h1>Tomcat Deployment Test – Advanced</h1> <!-- duplicate heading -->
 
-        <div class="info">
-            <p><strong>Status:</strong> <span class="badge">DEPLOYED</span></p>
-            <p><strong>Application:</strong> Static HTML Test App</p>
-            <p><strong>Server:</strong> Apache Tomcat</p>
-            <p><strong>Environment:</strong> Azure Ubuntu Build Server</p>
-        </div>
+    <p>Status: <span class="badge">DEPLOYED</span></p>
+    <p>Status: <span class="badge">DEPLOYED</span></p> <!-- duplicate -->
 
-        <div class="info">
-            <p><strong>Current Time (Client):</strong></p>
-            <p class="badge" id="time"></p>
-        </div>
+    <p>Server: Apache Tomcat</p>
+    <p>Server: Apache Tomcat</p> <!-- duplicate -->
 
-        <button onclick="refreshTime()">🔄 Refresh Time</button>
+    <p>Current Time:</p>
+    <p class="badge" id="time"></p>
 
-        <div class="info">
-            <p><strong>Deployment Version:</strong></p>
-            <p class="badge">v1.1</p>
-        </div>
-    </div>
+    <button onclick="refreshTime()">Refresh</button>
+    <button onclick="refreshTime()">Refresh</button> <!-- duplicate button -->
+</div>
 
-    <footer>
-        DevOps Deployment Verification Page
-    </footer>
+<footer>
+    <p>DevOps Deployment Verification Page</p>
+</footer>
 
-    <script>
-        function refreshTime() {
-            document.getElementById("time").innerText =
-                new Date().toLocaleString();
-        }
+<script>
+    var time; // unused variable (code smell)
+    var a = 10;
+    var b = 0;
 
-        // auto load time
-        refreshTime();
-    </script>
+    function refreshTime() {
+        document.getElementById("time").innerHTML =
+            new Date().toLocaleString();
+
+        console.log("Time refreshed"); // debug log
+        console.log("Time refreshed"); // duplicate log
+    }
+
+    function divideNumbers() {
+        return a / b; // division by zero bug
+    }
+
+    function unusedFunction() {
+        alert("This function is never used");
+    }
+
+    refreshTime();
+    refreshTime(); // duplicate call
+
+    eval("console.log('Using eval is bad practice')"); // security issue
+</script>
 
 </body>
 </html>
-
